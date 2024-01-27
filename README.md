@@ -95,7 +95,7 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```bash
-  cd recipe_app
+  cd appointments_app
   bundle install
   yarn install
 ```
