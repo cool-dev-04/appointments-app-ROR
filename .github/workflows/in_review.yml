@@ -1,0 +1,53 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+name: Move pull request to In Review
+
+on:
+  pull_request:
+    types: [review_requested]
+
+env:
+  in_review: 'In Review'
+  user: 'mohamedSabry0'
+  project_id: 13
+
+jobs:
+  # automate-project-columns:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: alex-page/github-project-automation-plus@v0.8.3
+  #       with:
+  #         project: 'Recipe App'
+  #         column: 'In Review'
+  #         repo-token: ${{ secrets.GHPROJECT }}
+
+  # automate-project-columns:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: Fmanuel809/github-project-automation-v2@0.8.2
+  #       with:
+  #         project: 'Recipe App'
+  #         column: 'In Review'
+  #         repo-token: ${{ secrets.GHPROJECT }}
+
+  pr_reviewrequested:
+    name: pr_reviewrequested
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'review_requested'
+    steps:
+      - name: Move PR to ${{ env.in_review }}
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
+        with:
+          gh_token: ${{ secrets.GHPROJECT }}
+          user: ${{ env.user }}
+          # organization: sample-org
+          project_id: ${{ env.project_id }}
+          resource_node_id: ${{ github.event.pull_request.node_id }}
+          status_value: ${{ env.in_review }} # Target status
