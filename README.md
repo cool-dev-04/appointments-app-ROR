@@ -31,9 +31,11 @@
 
 # 📖 Appointments App <a name="about-project"></a>
 
+This is the Appointments App, a web application built with Ruby on Rails, PostgreSQL, JavaScript, React, and Redux. It allows users to manage appointments and schedule appointments with service providers.
+
 ## 📺 Live Demo <a name="live-demo"></a>
 
--
+...
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -59,7 +61,7 @@
 
 ### Key Features <a name="key-features"></a>
 
--
+...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -72,9 +74,12 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
 
 ```
-    ruby >= 3.2.2
-    rails >= 7.1.3
-    postgres >= 14.7
+    - ruby >= 3.2.2
+    - rails >= 7.1.3
+    - postgres >= 14.7
+    - bundler 2.5.1
+    - node.js 19.6.0
+    - yarn 3.4.1
 ```
 
 ### Setup
@@ -90,7 +95,7 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```bash
-  cd recipe_app
+  cd appointments_app
   bundle install
   yarn install
 ```
@@ -123,6 +128,17 @@ to run tests:
 
 ## 👥 Authors <a name="author"></a>
 
+👤 **Mohammad Yaser Safi**
+
+- GitHub: [@githubhandle](https://github.com/MohammadYaser)
+- Twitter: [@twitterhandle](https://twitter.com/Yaser_Safi19)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/mohammad-yaser-safi-a12083270)
+
+👤 **Eric**
+
+- GitHub: [@erickma1](https://github.com/erickma1)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/eric-mawudeku-55b74883/)
+
 👤 **Mohamed Sabry**
 
 - GitHub: [@mohamedSabry0](https://github.com/mohamedSabry0)
@@ -134,6 +150,8 @@ to run tests:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
+
+...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
