@@ -36,6 +36,3 @@ jobs:
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: ${{ env.in_review }} # Target status
           move_related_issues: true
-      # - name: Print PR linked issues
-      #   run: |
-      #     echo "PR linked issues: ${{ github.event.pull_request.closingIssuesReferences }}"
