@@ -5,7 +5,7 @@ on:
   push:
 
 env:
-  in_progress: 'In Progress'
+  in_review: 'In Review'
   user: 'mohamedSabry0'
   project_id: 13
   token: ${{ secrets.GHPROJECT }}
@@ -15,11 +15,23 @@ jobs:
     name: Print linked issues
     runs-on: ubuntu-latest
     steps:
-      - name: Print PR linked issues
+      - name: Move issue to ${{ env.in_review }}
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
+        with:
+          gh_token: ${{ env.token }}
+          user: ${{ env.user }}
+          # organization: sample-org
+          project_id: ${{ env.project_id }}
+          resource_node_id: ${{ github.event.pull_request.closingIssuesReferences.first.node_id }}
+          status_value: ${{ env.in_review }}
+      - name: Print linked issues
         run: |
           echo "PR linked issues: ${{ github.event.pull_request.closingIssuesReferences }}"
           echo "PR ${{ github.event.pull_request.number }}"
           echo "PR ${{ github.event.pull_request.closingIssuesReferences.nodes }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHPROJECT }}
+
   # get-linked-issues:
   #   name: Get linked issues
   #   runs-on: ubuntu-latest
