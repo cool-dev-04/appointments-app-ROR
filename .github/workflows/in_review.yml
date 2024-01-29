@@ -11,7 +11,6 @@ name: Move pull request to In Review
 
 on:
   pull_request:
-    types: [review_requested]
   push:
 
 env:
