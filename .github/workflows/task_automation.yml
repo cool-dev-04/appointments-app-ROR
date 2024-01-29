@@ -2,6 +2,7 @@ name: Get linked issues
 on:
   pull_request:
     types: [opened, edited]
+  push:
 
 env:
   in_progress: 'In Progress'
@@ -17,6 +18,8 @@ jobs:
       - name: Print PR linked issues
         run: |
           echo "PR linked issues: ${{ github.event.pull_request.closingIssuesReferences }}"
+          echo "PR ${{ github.event.pull_request.number }}"
+          echo "PR ${{ github.event.pull_request.closingIssuesReferences.nodes }}"
   # get-linked-issues:
   #   name: Get linked issues
   #   runs-on: ubuntu-latest
