@@ -12,6 +12,7 @@ name: Move pull request to In Review
 on:
   pull_request:
     types: [review_requested]
+  push:
 
 env:
   in_review: 'In Review'
@@ -35,6 +36,7 @@ jobs:
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: ${{ env.in_review }} # Target status
+          move_related_issues: true
       # - name: Print PR linked issues
       #   run: |
       #     echo "PR linked issues: ${{ github.event.pull_request.closingIssuesReferences }}"
