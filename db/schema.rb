@@ -10,8 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_164755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "consultations", force: :cascade do |t|
+    t.date "date", null: false
+    t.string "city", null: false
+    t.bigint "user_id", null: false
+    t.bigint "engineer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["engineer_id"], name: "index_consultations_on_engineer_id"
+    t.index ["user_id"], name: "index_consultations_on_user_id"
+  end
+
+  create_table "engineers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "photo"
+    t.decimal "consultancy_fee", precision: 8, scale: 2, null: false
+    t.string "speciality", null: false
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "consultations", "engineers"
+  add_foreign_key "consultations", "users"
 end
