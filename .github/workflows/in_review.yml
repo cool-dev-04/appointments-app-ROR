@@ -15,28 +15,12 @@ on:
 
 env:
   in_review: 'In Review'
+  in_progress: 'In Progress'
   user: 'mohamedSabry0'
   project_id: 13
+  token: ${{ secrets.GHPROJECT }}
 
 jobs:
-  # automate-project-columns:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: alex-page/github-project-automation-plus@v0.8.3
-  #       with:
-  #         project: 'Recipe App'
-  #         column: 'In Review'
-  #         repo-token: ${{ secrets.GHPROJECT }}
-
-  # automate-project-columns:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: Fmanuel809/github-project-automation-v2@0.8.2
-  #       with:
-  #         project: 'Recipe App'
-  #         column: 'In Review'
-  #         repo-token: ${{ secrets.GHPROJECT }}
-
   pr_reviewrequested:
     name: pr_reviewrequested
     runs-on: ubuntu-latest
@@ -45,9 +29,12 @@ jobs:
       - name: Move PR to ${{ env.in_review }}
         uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
-          gh_token: ${{ secrets.GHPROJECT }}
+          gh_token: ${{ env.token }}
           user: ${{ env.user }}
           # organization: sample-org
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: ${{ env.in_review }} # Target status
+      # - name: Print PR linked issues
+      #   run: |
+      #     echo "PR linked issues: ${{ github.event.pull_request.closingIssuesReferences }}"
