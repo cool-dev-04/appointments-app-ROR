@@ -21,8 +21,8 @@ function EngineersList() {
           } = engineer;
           return (
             <div key={id}>
+              <img className="engineer-img" src={photo} alt={name} />
               <p>{name}</p>
-              <img src={photo} alt={name} />
               <p>{speciality}</p>
             </div>
           );

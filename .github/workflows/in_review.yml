@@ -11,7 +11,7 @@ name: Move pull request to In Review
 
 on:
   pull_request:
-    types: [review_requested]
+    types: [review_requested, opened, edited]
 
 env:
   in_review: 'In Review'
@@ -35,4 +35,20 @@ jobs:
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: ${{ env.in_review }} # Target status
+          move_related_issues: true
+
+  pr_opened_edited:
+    name: pr_opened_edited
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'edited')
+    steps:
+      - name: Move PR to ${{env.in_progress}}
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
+        with:
+          gh_token: ${{ env.token }}
+          user: ${{ env.user }}
+          # organization: sample-org
+          project_id: ${{ env.project_id }}
+          resource_node_id: ${{ github.event.pull_request.node_id }}
+          status_value: ${{ env.in_progress }} # Target status
           move_related_issues: true
