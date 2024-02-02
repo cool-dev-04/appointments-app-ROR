@@ -36,7 +36,19 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-        
+        <div>
+          <div className='d-flex gap-3 p-3'>
+            
+        <i class="bi bi-twitter"></i>
+        <i class="bi bi-facebook"></i>
+        <i class="bi bi-google"></i>
+        <i class="bi bi-github"></i>
+          <i class="bi bi-linkedin"></i>
+         </div>
+          <div>
+          <span>&copy;2024 somethin</span>
+          </div>
+        </div>
     </div>
     
       </>
