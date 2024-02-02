@@ -10,13 +10,19 @@
   display: flex;
   overflow-x: scroll;
   margin: 0 auto;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+
   div {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    flex: 1 1 33%;
+    &.active {
+      display: block;
+    }
   }
 }
 
