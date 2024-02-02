@@ -19,6 +19,10 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.svg$/,
+        use: ['file-loader', 'svg-inline-loader'],
+      },
+      {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
