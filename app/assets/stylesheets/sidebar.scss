@@ -28,38 +28,39 @@
     background-color: #97bf0f !important;
   }
 
-.sidebar .nav-btn {
-    padding: 5px;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: black;
+ .toggle-btn {
+    display: none;
+ }
+.nav-close-btn {
     visibility: hidden;
-    opacity: 0;
 }
+@media only screen and (max-width: 767px) {
+    .sidebar {
+        display: none !important;
+    }
 
-@media only screen and (max-width: 1024px) {
-    .sidebar .nav-btn {
+    .toggle-btn {
+        display: inline;
+    }
+    .toggle-btn > button, .nav-close-btn {
+        font-size: 1.5rem;
+        padding: 5px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: black;
         visibility: visible;
         opacity: 1;
     }
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        background: #fff;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        transition: 1s;
-        transform: translateY(-100vh);
-    }
 
     .responsive_menu {
-        transform: none;
+        display: block !important;
+        position: absolute !important;
+        z-index: 444;
+        background-color: #fff;
+        transition: transform 3s ease;
+        transform: translateX(4);
+
     }
 }
