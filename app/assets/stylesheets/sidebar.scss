@@ -6,8 +6,8 @@
 }
 
 .logo {
-    width: 200px;
-    height: 100px;
+    width: 150px;
+    height: 50px;
 }
 
 .sidebar ul {
@@ -27,3 +27,39 @@
     color: #fff !important;
     background-color: #97bf0f !important;
   }
+
+.sidebar .nav-btn {
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    visibility: hidden;
+    opacity: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    .sidebar .nav-btn {
+        visibility: visible;
+        opacity: 1;
+    }
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        background: #fff;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        transition: 1s;
+        transform: translateY(-100vh);
+    }
+
+    .responsive_menu {
+        transform: none;
+    }
+}

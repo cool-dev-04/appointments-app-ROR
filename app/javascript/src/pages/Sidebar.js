@@ -1,12 +1,19 @@
 import React from 'react';
+import { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo1 from '../images/logo1.png'
 
 const Sidebar = () => {
+  const navRef = useRef();
+  const showSidbar = () => {
+    navRef.current.classList.toggle("responsive_menu");
+  }
   return (
     <>
-    <div className='sidebar d-flex flex-column justify-content-between vh-100'>
+    <div ref={navRef} className='sidebar d-flex flex-column justify-content-between vh-100'>
         <div>
+          <button className='nav-btn nav-close-btn' onClick={showSidbar}><i className="bi bi-x-lg"></i></button>
+          <button className='nav-btn' onClick={showSidbar}><i class="bi bi-list"></i></button>
              <img src={logo1}  className='logo' />
         <ul className='nav nav-pills flex-column p-0 mt-5'>
           <li className='nav-item p-1'>
@@ -39,11 +46,11 @@ const Sidebar = () => {
         <div>
           <div className='d-flex gap-3 p-3'>
             
-        <i class="bi bi-twitter"></i>
-        <i class="bi bi-facebook"></i>
-        <i class="bi bi-google"></i>
-        <i class="bi bi-github"></i>
-          <i class="bi bi-linkedin"></i>
+        <i className="bi bi-twitter"></i>
+        <i className="bi bi-facebook"></i>
+        <i className="bi bi-google"></i>
+        <i className="bi bi-github"></i>
+          <i className="bi bi-linkedin"></i>
          </div>
           <div>
           <span>&copy;2024 somethin</span>
