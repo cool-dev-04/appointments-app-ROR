@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import Sidebar from './pages/Sidebar';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
