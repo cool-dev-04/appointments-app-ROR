@@ -1,0 +1,29 @@
+.sidebar {
+    height: 100vh;
+    box-shadow: 1px 0px 8px 0px rgba(184,82,82,0.7);
+-webkit-box-shadow: 2px 0px 12px 0px rgba(228, 207, 207, 0.7);
+-moz-box-shadow: 2px 0px 12px 0px rgba(228, 192, 192, 0.7);
+}
+
+.logo {
+    width: 200px;
+    height: 100px;
+}
+
+.sidebar ul {
+    padding: 0px !important;
+}
+
+.nav-link {
+    color: black !important;
+}
+.nav li a {
+    border-radius: 0px !important;
+}
+.nav li a:active {
+    color: #fff !important;
+}
+.active {
+    color: #fff !important;
+    background-color: #97bf0f !important;
+  }
