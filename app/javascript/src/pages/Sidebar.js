@@ -19,18 +19,28 @@ const Sidebar = () => {
       <div className="toggle-btn">
         {
           isMenuClicked
+<<<<<<< HEAD
             /* eslint-disable jsx-a11y/control-has-associated-label */
             ? <button type="button" className="nav-btn nav-show-btn" onClick={showSidebar}><i className="bi bi-list" /></button>
+=======
+            ? <button className="nav-btn nav-show-btn" onClick={showSidebar}><i className="bi bi-list" /></button>
+>>>>>>> origin/nav-menu
             : <span />
 
         }
       </div>
       <div ref={navRef} className="sidebar d-flex flex-column justify-content-between vh-100">
         <div>
+<<<<<<< HEAD
           {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <button type="button" className="nav-btn nav-close-btn" onClick={hideSidebar}><i className="bi bi-x-lg" /></button>
 
           <img src={logo1} className="logo" alt="logo" />
+=======
+          <button className="nav-btn nav-close-btn" onClick={hideSidebar}><i className="bi bi-x-lg" /></button>
+
+          <img src={logo1} className="logo" />
+>>>>>>> origin/nav-menu
           <ul className="nav nav-pills flex-column p-0 mt-5">
             <li className="nav-item p-1">
               <NavLink to="/" className="nav-link">
