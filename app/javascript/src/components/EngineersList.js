@@ -5,13 +5,17 @@ import { fetchEngineers, engineersState } from '../redux/engineers/engineersSlic
 function EngineersList() {
   const dispatch = useDispatch();
   const { engineers, error, status } = useSelector(engineersState);
-  const [showId, setShowId] = useState(1);
+  const [showIds, setShowIds] = useState([1, 2, 3]);
 
-  const handleShowClick = (prev, id) => {
-    if (id > 0 && id < engineers.length + 1) {
-      document.getElementById(prev).classList.remove('active');
-      document.getElementById(id).classList.add('active');
-      setShowId(id);
+  const handlePrevClick = (ids) => {
+    if (showIds[0] > 1) {
+      setShowIds(engineers.map((engineer) => engineer.id).filter((id) => id < ids[0]).slice(-3));
+    }
+  };
+
+  const handleNextClick = (ids) => {
+    if (showIds[showIds.length - 1] < engineers.length) {
+      setShowIds(engineers.map((engineer) => engineer.id).filter((id) => id > ids[2]).slice(0, 3));
     }
   };
 
@@ -24,20 +28,28 @@ function EngineersList() {
   if (status === 'succeeded') {
     return (
       <div className="engineers-list">
-        <button type="button" onClick={() => handleShowClick(showId, showId - 1)}>Previous</button>
+        <button type="button" className={`prev carousel-btn ${showIds[0] === 1 ? 'disabled' : ''}`} onClick={() => handlePrevClick(showIds)}>
+          { /* eslint-disable jsx-a11y/control-has-associated-label */ }
+          <i className="bi bi-caret-left" />
+        </button>
         {engineers.map((engineer) => {
           const {
             name, id, photo, speciality,
           } = engineer;
           return (
-            <div key={id} id={id} className={engineer.id === 1 ? 'active' : ''}>
-              <img className="engineer-img" src={photo} alt={name} />
+            <div key={id} id={id} className={showIds.includes(engineer.id) ? 'active-item' : 'item'}>
+              <div className="engineer-img-container">
+                <img className="engineer-img" src={photo} alt={name} />
+              </div>
               <p>{name}</p>
               <p>{speciality}</p>
             </div>
           );
         })}
-        <button type="button" onClick={() => handleShowClick(showId, showId + 1)}>Next</button>
+        <button type="button" className={`next carousel-btn ${showIds[showIds.length - 1] === engineers.length ? 'disabled' : ''}`} onClick={() => handleNextClick(showIds)}>
+          { /* eslint-disable jsx-a11y/control-has-associated-label */ }
+          <i className="bi bi-caret-right" />
+        </button>
       </div>
     );
   }

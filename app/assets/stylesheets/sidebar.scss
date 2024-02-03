@@ -1,8 +1,12 @@
 .sidebar {
-  height: 100vh;
   box-shadow: 1px 0 8px 0 rgba(184, 82, 82, 0.7);
   -webkit-box-shadow: 2px 0 12px 0 rgba(228, 207, 207, 0.7);
   -moz-box-shadow: 2px 0 12px 0 rgba(228, 192, 192, 0.7);
+  width: $sidebar_width;
+}
+
+.sidebar-container {
+  position: absolute;
 }
 
 .logo {
@@ -23,12 +27,12 @@
 }
 
 .nav li a:active {
-  color: #fff !important;
+  color: $main-text !important;
 }
 
 .active {
-  color: #fff !important;
-  background-color: #97bf0f !important;
+  color: $main-text !important;
+  background-color: $main-bg !important;
 }
 
 .toggle-btn {
