@@ -18,10 +18,9 @@
   },
   "ignoreFiles": [
     "build/**",
+    "app/assets/builds/**",
     "dist/**",
     "**/reset*.css",
-    "**/bootstrap*.css",
-    "coverage/**",
-    "node_modules/**"
+    "**/bootstrap*.css"
   ]
 }
