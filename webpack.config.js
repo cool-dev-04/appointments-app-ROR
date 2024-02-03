@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   devtool: 'source-map',
   entry: {
     application: './app/javascript/application.js',
@@ -13,6 +13,26 @@ module.exports = {
         test: /\.(js)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.svg$/,
+        use: ['file-loader', 'svg-inline-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192, // Convert images < 8kb to base64 strings
+              name: 'images/[name].[hash:8].[ext]',
+            },
+          },
+        ],
       },
     ],
   },
