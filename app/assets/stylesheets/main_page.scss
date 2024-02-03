@@ -29,6 +29,7 @@
     background-color: $disabled-btn;
     color: #555;
     cursor: not-allowed;
+
     &:hover {
       background-color: $disabled-btn;
     }
@@ -60,6 +61,7 @@
     justify-content: center;
     text-align: center;
     width: calc(100vw / 3);
+
     &.active-item {
       display: flex;
       justify-content: center;
@@ -91,6 +93,7 @@
     width: 100vw;
     overflow-x: scroll;
     justify-content: flex-start;
+
     div {
       &.active-item,
       &.item {
