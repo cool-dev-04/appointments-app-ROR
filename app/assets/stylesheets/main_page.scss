@@ -54,7 +54,8 @@
   justify-content: space-around;
   align-items: center;
 
-  div {
+  .eng-details-link {
+    background-color: #fff !important;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -84,6 +85,14 @@
   border-radius: 50%;
 }
 
+.dotted-top-border {
+  border-top: #999 2px dotted;
+}
+
+.dotted-bottom-border {
+  border-bottom: #999 2px dotted;
+}
+
 @media only screen and (max-width: 767px) {
   .carousel-btn {
     display: none;
@@ -100,6 +109,16 @@
         display: flex;
         justify-content: center;
         min-width: 99vw;
+      }
+    }
+
+    .engineer-img-container {
+      width: 250px;
+      height: 250px;
+
+      .engineer-img {
+        width: 250px;
+        height: 250px;
       }
     }
   }

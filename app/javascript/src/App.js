@@ -2,7 +2,6 @@ import React from 'react';
 import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
-// import router from './router';
 import Sidebar from './pages/Sidebar';
 import HomePage from './pages/HomePage';
 
