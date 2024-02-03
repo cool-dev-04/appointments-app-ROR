@@ -1,14 +1,8 @@
 import React from 'react';
 import {
-<<<<<<< HEAD
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
 // import router from './router';
-=======
-  RouterProvider, BrowserRouter, Routes, Route,
-} from 'react-router-dom';
-import router from './router';
->>>>>>> origin/nav-menu
 import Sidebar from './pages/Sidebar';
 import HomePage from './pages/HomePage';
 
