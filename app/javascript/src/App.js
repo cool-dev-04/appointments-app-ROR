@@ -1,28 +1,29 @@
 import React from 'react';
-import { RouterProvider } from 'react-router-dom';
-import router from './router';
+import {
+  BrowserRouter, Routes, Route,
+} from 'react-router-dom';
+// import router from './router';
 import Sidebar from './pages/Sidebar';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <BrowserRouter>
-    <div className='d-flex'>
-      <div className='col-auto'>
-        <Sidebar />
+      <div className="d-flex">
+        <div className="col-auto">
+          <Sidebar />
 
-      </div>
+        </div>
         <div>
           <Routes>
-            <Route path='/' element={<HomePage />}></Route>
-            <Route path='consultateEngineer' element={<HomePage />}></Route>
-            <Route path='myConsultation' element={<HomePage />}></Route>
-            <Route path='addEngineer' element={<HomePage />}></Route>
-            <Route path='deleteEngineer' element={<HomePage />}></Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="consultateEngineer" element={<HomePage />} />
+            <Route path="myConsultation" element={<HomePage />} />
+            <Route path="addEngineer" element={<HomePage />} />
+            <Route path="deleteEngineer" element={<HomePage />} />
           </Routes>
 
-      </div>
+        </div>
 
       </div>
     </BrowserRouter>
