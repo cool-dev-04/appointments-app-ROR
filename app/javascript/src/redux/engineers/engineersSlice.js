@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import fetchEngineers from './engineersThunk';
+import { addEngineer, fetchEngineers } from './engineersThunk';
 
 const initialState = {
   engineers: [],
@@ -23,6 +23,12 @@ const engineersSlice = createSlice({
         engineers: action.payload,
         status: 'succeeded',
       }))
+      .addCase(addEngineer.fulfilled, (state, action) => ({
+        ...state,
+        engineers: [...state.engineers, action.payload],
+        status: 'succeeded',
+        message: action.payload.response,
+      }))
 
     // for all pending actions that has the same callback functions
       .addMatcher(isPendingAction, (state) => ({ ...state, status: 'loading' }))
@@ -37,5 +43,5 @@ const engineersSlice = createSlice({
 });
 
 export const engineersState = (state) => state.engineers;
-export { fetchEngineers };
+export { fetchEngineers, addEngineer };
 export default engineersSlice.reducer;
