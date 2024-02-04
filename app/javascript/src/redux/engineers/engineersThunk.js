@@ -1,14 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const URL = '/api/v1/engineers';
+const EngineersURL = '/api/v1/engineers';
 
-const fetchEngineers = createAsyncThunk('greetings/fetchEngineers', async () => {
-  const response = await axios.get(URL)
+const fetchEngineers = createAsyncThunk('engineers/fetchEngineers', async () => {
+  const response = await axios.get(EngineersURL)
     .then(({ data }) => data).catch((error) => {
       throw new Error(`HTTP error! Error: ${error}`);
     });
   return response;
 });
 
-export default fetchEngineers;
+const addEngineer = createAsyncThunk('engineers/AddEngineer', async (engineer) => {
+  const response = await axios.post(EngineersURL, engineer)
+    .then(({ data }) => data).catch((error) => {
+      throw new Error(`HTTP error! Error: ${error}`);
+    });
+  console.log(response);
+  return response;
+});
+
+export { fetchEngineers, addEngineer };

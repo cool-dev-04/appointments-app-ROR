@@ -38,6 +38,6 @@ class Api::V1::EngineersController < ApplicationController
   private
 
   def engineer_params
-    params.require(:engineer).permit(:name, :speciality, :photo, :consultancy_fee)
+    params.require(:engineer).permit(:name, :speciality, :photo, :about, :consultancy_fee)
   end
 end

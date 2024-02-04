@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import Sidebar from './pages/Sidebar';
 import HomePage from './pages/HomePage';
+import AddEngineerPage from './pages/AddEngineerPage';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="consultateEngineer" element={<HomePage />} />
           <Route path="myConsultation" element={<HomePage />} />
-          <Route path="addEngineer" element={<HomePage />} />
+          <Route path="addEngineer" element={<AddEngineerPage />} />
           <Route path="deleteEngineer" element={<HomePage />} />
         </Route>
       </Routes>
