@@ -11,7 +11,12 @@ const EngineerDetails = () => {
   const [error, setError] = useState('');
   const engineerDetails = useSelector((state) => state.engineerDetails);
   const {
-    name, photo, speciality, consultancyFee, about,
+    name,
+    photo,
+    speciality,
+    /* eslint-disable camelcase */
+    consultancy_fee,
+    about,
   } = engineerDetails;
 
   const fetchEnginnerDetails = useCallback(async () => {
@@ -52,19 +57,24 @@ const EngineerDetails = () => {
             <div className="h-100 p-5">
               <h2 className="fw-bolder text-end">{name}</h2>
               <div className="px-2 mb-2 bg-light bg-gradient text-dark">
-                <span>Consultancy fee:</span>
+                <span className="fw-bolder">Consultancy fee:</span>
                 <span className="float-end">
                   &euro;
-                  {consultancyFee}
+                  { /* eslint-disable camelcase */ }
+                  {consultancy_fee}
                 </span>
               </div>
               <div className="px-2 mb-2 text-dark">
-                <span>Speciality:</span>
+                <span className="fw-bolder">Speciality:</span>
                 <span className="float-end">{speciality}</span>
               </div>
               <div className="px-2 mb-2 bg-light bg-gradient text-dark">
-                <span className="about">
+                <span className="about fw-bolder">
                   About:
+                  <br />
+                </span>
+                <span className="text-wrap">
+
                   {about}
                 </span>
               </div>
