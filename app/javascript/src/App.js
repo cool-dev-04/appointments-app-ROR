@@ -5,11 +5,15 @@ import {
 import Sidebar from './pages/Sidebar';
 import HomePage from './pages/HomePage';
 import AddEngineerPage from './pages/AddEngineerPage';
+import Register from './components/auth/register';
+import Login from './components/auth/login';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Sidebar />}>
           <Route index element={<HomePage />} />
           <Route path="consultateEngineer" element={<HomePage />} />
