@@ -10,12 +10,14 @@ class Api::V1::EngineersController < ApplicationController
 
   def show
     @engineer = Engineer.find(params[:id])
+  
     if @engineer
-      render json: @engineer.select(:id, :name, :speciality, :photo, :consultancy_fee)
+      render json: @engineer.attributes.slice('id', 'name', 'speciality', 'photo', 'consultancy_fee', 'about')
     else
-      render json: { error: 'Engineer not found' }
+      render json: { error: 'Engineer not found' }, status: :not_found
     end
   end
+  
 
   def create
     @engineer = Engineer.new(engineer_params)

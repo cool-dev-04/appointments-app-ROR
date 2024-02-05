@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchEngineers, engineersState } from '../redux/engineers/engineersSlice';
+import { Link } from 'react-router-dom';
 
 function EngineersList() {
   const dispatch = useDispatch();
@@ -38,11 +39,14 @@ function EngineersList() {
           } = engineer;
           return (
             <div key={id} id={id} className={showIds.includes(engineer.id) ? 'active-item' : 'item'}>
+              
               <div className="engineer-img-container">
                 <img className="engineer-img" src={photo} alt={name} />
               </div>
+              <Link to={`engineersList/${engineer.id}`} className='engineer text-black'>
               <p>{name}</p>
-              <p>{speciality}</p>
+                <p>{speciality}</p>
+                </Link>
             </div>
           );
         })}

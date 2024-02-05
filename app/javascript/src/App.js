@@ -5,6 +5,7 @@ import {
 // import router from './router';
 import Sidebar from './pages/Sidebar';
 import HomePage from './pages/HomePage';
+import EngineerDetails from './components/EngineerDetails';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Sidebar />}>
           <Route index element={<HomePage />} />
+          <Route path="/engineersList/:engineerId" element={<EngineerDetails />} />
           <Route path="consultateEngineer" element={<HomePage />} />
           <Route path="myConsultation" element={<HomePage />} />
           <Route path="addEngineer" element={<HomePage />} />

@@ -84,6 +84,14 @@
   border-radius: 50%;
 }
 
+.engineer {
+  text-decoration: none;
+}
+
+.engineer:hover {
+  color: rgb(90, 207, 12) !important;
+}
+
 @media only screen and (max-width: 767px) {
   .carousel-btn {
     display: none;
