@@ -45,8 +45,11 @@ const EngineerDetails = () => {
   }
   return (
     <>
-      <div className="container py-4">
-        <div className="row align-items-md-stretch">
+      <div className="py-4 my-container">
+        <div className="engineer-details row row align-items-md-stretch">
+        <Link to="/" className="prev carousel-btn back-btn">
+        <i className="bi bi-caret-left float-end" />
+      </Link>
           <div className="col-md-6">
             <div className="h-200 p-5">
               <img src={photo} alt="Engineer" />
@@ -55,8 +58,8 @@ const EngineerDetails = () => {
 
           <div className="col-md-6 details">
             <div className="h-100 p-5">
-              <h2 className="fw-bolder text-end">{name}</h2>
-              <div className="px-2 mb-2 bg-light bg-gradient text-dark">
+              <h2 className="fw-bolder text-end name">{name}</h2>
+              <div className="px-2 mb-2 bg-light bg-gradient text-dark hidden-div">
                 <span className="fw-bolder">Consultancy fee:</span>
                 <span className="float-end">
                   &euro;
@@ -64,20 +67,25 @@ const EngineerDetails = () => {
                   {consultancy_fee}
                 </span>
               </div>
-              <div className="px-2 mb-2 text-dark">
+              <div className="px-2 mb-2 text-dark hidden-div">
                 <span className="fw-bolder">Speciality:</span>
                 <span className="float-end">{speciality}</span>
               </div>
-              <div className="px-2 mb-2 bg-light bg-gradient text-dark">
-                <span className="about fw-bolder">
+              <div className="px-2 mb-2 bg-light bg-gradient text-dark white-div">
+                <span className="about fw-bolder hidden-div">
                   About:
                   <br />
                 </span>
-                <span className="text-wrap">
+                <p className="text-wrap description">
 
                   {about}
-                </span>
+                </p>
               </div>
+              <div className="d-flex gap-3 p-3 justify-content-center">
+              <i className="bi bi-twitter" />
+              <i className="bi bi-facebook" />
+              <i className="bi bi-google" />
+            </div>
               <div className="float-end">
 
                 <Link to="/" className="fw-bolder carousel-btn reserve-btn">
@@ -96,9 +104,6 @@ const EngineerDetails = () => {
           </div>
         </div>
       </div>
-      <Link to="/" className="carousel-btn back-btn">
-        <i className="bi bi-caret-left float-end" />
-      </Link>
     </>
   );
 };
