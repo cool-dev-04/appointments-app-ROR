@@ -6,6 +6,7 @@ import Sidebar from './pages/Sidebar';
 import HomePage from './pages/HomePage';
 import AddEngineerPage from './pages/AddEngineerPage';
 import EngineerDetails from './components/EngineerDetails';
+import DeleteEngineer from './pages/DeleteEngineer';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="consultateEngineer" element={<HomePage />} />
           <Route path="myConsultation" element={<HomePage />} />
           <Route path="addEngineer" element={<AddEngineerPage />} />
-          <Route path="deleteEngineer" element={<HomePage />} />
+          <Route path="deleteEngineer" element={<DeleteEngineer />} />
         </Route>
       </Routes>
     </BrowserRouter>
