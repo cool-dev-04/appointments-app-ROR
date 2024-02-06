@@ -29,12 +29,12 @@ class Api::V1::EngineersController < ApplicationController
 
   def destroy
     @engineer = Engineer.find(params[:id])
-    
+
     # Use a transaction to ensure atomicity
     ActiveRecord::Base.transaction do
       # Delete associated consultations
       @engineer.consultations.destroy_all
-      
+
       # Then delete the engineer
       if @engineer.destroy
         render json: { message: 'Engineer and associated consultations deleted' }
