@@ -79,15 +79,12 @@ function EngineersList({ showDeleteButton = false }) {
                 <button
                   type="button"
                   onClick={() => handleDelete(engineer.id)}
-                  className="fs-bolder delete-btn"
+                  className="fw-bolder delete-btn p-2"
                 >
                   <span className="fs-5 setting-icon">
-                    <i className="bi bi-gear" />
+                  <i class="bi bi-trash3-fill"></i>
                   </span>
                   Delete
-                  <span className="fs-5 right-arrow">
-                    <i className="bi bi-arrow-right-circle" />
-                  </span>
                 </button>
               )}
             </div>

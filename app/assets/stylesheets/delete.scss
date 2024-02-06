@@ -1,0 +1,14 @@
+.delete-btn {
+    padding-right: 1.5rem !important;
+    outline: none;
+    background-color: $main-bg;
+    border: 0.1px solid transparent;
+    border-radius: 20% 20% 20% 20% / 50% 50% 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.3s ease;
+    color: #fff;
+}
