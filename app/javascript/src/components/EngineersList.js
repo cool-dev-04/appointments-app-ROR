@@ -59,6 +59,14 @@ function EngineersList({ showDeleteButton = false }) {
   }, [dispatch, status]);
 
   if (status === 'succeeded') {
+    if (!Array.isArray(engineers) || engineers.length === 0) {
+      return <div className="empty-div">
+        <p className='empty-msg'>
+        There are no engineers to display.
+        </p>
+      </div>;
+    }
+
     return (
       <div className="engineers-list">
         <button

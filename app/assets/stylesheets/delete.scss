@@ -12,3 +12,29 @@
   transition: all 0.3s ease;
   color: #fff;
 }
+
+.empty-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.empty-div p {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(39, 37, 37, 0.1);
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .empty-div p {
+      font-size: 1.2rem;
+      padding: 15px;
+    }
+  }
