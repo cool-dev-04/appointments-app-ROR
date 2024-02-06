@@ -36,6 +36,22 @@ function EngineersList({ showDeleteButton = false }) {
     }
   };
 
+  const handleDelete = async (engineerId) => {
+    try {
+      const response = await fetch(`/api/v1/engineers/${engineerId}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        // Refresh engineer list after successful deletion
+        dispatch(fetchEngineers());
+      } else {
+        console.error('Failed to delete engineer');
+      }
+    } catch (error) {
+      console.error('Failed to delete engineer', error);
+    }
+  };
+
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchEngineers());
