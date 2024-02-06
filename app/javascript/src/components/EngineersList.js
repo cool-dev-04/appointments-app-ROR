@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   fetchEngineers,
   engineersState,
-} from "../redux/engineers/engineersSlice";
+} from '../redux/engineers/engineersSlice';
 
 function EngineersList({ showDeleteButton = false }) {
   const dispatch = useDispatch();
   const { engineers, error, status } = useSelector(engineersState);
   const [showIds, setShowIds] = useState([1, 2, 3]);
 
-  const lastId = (engineers) =>
-    engineers.map((engineer) => engineer.id)[engineers.length - 1];
+  const lastId = (engineers) => engineers.map((engineer) => engineer.id)[engineers.length - 1];
 
   const handlePrevClick = (ids) => {
     if (showIds[0] > 1) {
@@ -20,7 +20,7 @@ function EngineersList({ showDeleteButton = false }) {
         engineers
           .map((engineer) => engineer.id)
           .filter((id) => id < ids[0])
-          .slice(-3)
+          .slice(-3),
       );
     }
   };
@@ -31,7 +31,7 @@ function EngineersList({ showDeleteButton = false }) {
         engineers
           .map((engineer) => engineer.id)
           .filter((id) => id > ids[2])
-          .slice(0, 3)
+          .slice(0, 3),
       );
     }
   };
@@ -53,30 +53,32 @@ function EngineersList({ showDeleteButton = false }) {
   };
 
   useEffect(() => {
-    if (status === "idle") {
+    if (status === 'idle') {
       dispatch(fetchEngineers());
     }
   }, [dispatch, status]);
 
-  if (status === "succeeded") {
+  if (status === 'succeeded') {
     return (
       <div className="engineers-list">
         <button
           type="button"
-          className={`prev carousel-btn ${showIds[0] === 1 ? "disabled" : ""}`}
+          className={`prev carousel-btn ${showIds[0] === 1 ? 'disabled' : ''}`}
           onClick={() => handlePrevClick(showIds)}
         >
           {/* eslint-disable jsx-a11y/control-has-associated-label */}
           <i className="bi bi-caret-left" />
         </button>
         {engineers.map((engineer) => {
-          const { name, id, photo, speciality } = engineer;
+          const {
+            name, id, photo, speciality,
+          } = engineer;
           return (
             <div
               key={id}
               id={id}
               className={`engineer-card ${
-                showIds.includes(engineer.id) ? "active-item" : "item"
+                showIds.includes(engineer.id) ? 'active-item' : 'item'
               }`}
             >
               <div className="engineer-img-container">
@@ -98,7 +100,7 @@ function EngineersList({ showDeleteButton = false }) {
                   className="fw-bolder delete-btn p-2"
                 >
                   <span className="fs-5 setting-icon">
-                  <i class="bi bi-trash3-fill"></i>
+                    <i className="bi bi-trash3-fill" />
                   </span>
                   Delete
                 </button>
@@ -109,7 +111,7 @@ function EngineersList({ showDeleteButton = false }) {
         <button
           type="button"
           className={`next carousel-btn ${
-            showIds[showIds.length - 1] === lastId(engineers) ? "disabled" : ""
+            showIds[showIds.length - 1] === lastId(engineers) ? 'disabled' : ''
           }`}
           onClick={() => handleNextClick(showIds)}
         >
@@ -119,9 +121,18 @@ function EngineersList({ showDeleteButton = false }) {
       </div>
     );
   }
-  if (status === "failed") {
+  if (status === 'failed') {
     return <p>{error}</p>;
   }
 }
 
+// Define propTypes for EngineersList component
+EngineersList.propTypes = {
+  showDeleteButton: PropTypes.bool, // showDeleteButton prop should be a boolean
+};
+
+// Define defaultProps for EngineersList component
+EngineersList.defaultProps = {
+  showDeleteButton: false, // Default value for showDeleteButton prop is false
+};
 export default EngineersList;
