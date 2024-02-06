@@ -16,7 +16,6 @@ const addEngineer = createAsyncThunk('engineers/AddEngineer', async (engineer) =
     .then(({ data }) => data).catch((error) => {
       throw new Error(`HTTP error! Error: ${error}`);
     });
-  console.log(response);
   return response;
 });
 

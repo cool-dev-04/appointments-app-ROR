@@ -8,6 +8,8 @@ function EngineersList() {
   const { engineers, error, status } = useSelector(engineersState);
   const [showIds, setShowIds] = useState([1, 2, 3]);
 
+  const lastId = (engineers) => engineers.map((engineer) => engineer.id)[engineers.length - 1];
+
   const handlePrevClick = (ids) => {
     if (showIds[0] > 1) {
       setShowIds(engineers.map((engineer) => engineer.id).filter((id) => id < ids[0]).slice(-3));
@@ -15,8 +17,11 @@ function EngineersList() {
   };
 
   const handleNextClick = (ids) => {
-    if (showIds[showIds.length - 1] < engineers.length) {
-      setShowIds(engineers.map((engineer) => engineer.id).filter((id) => id > ids[2]).slice(0, 3));
+    if (ids[ids.length - 1] < lastId(engineers)) {
+      setShowIds(
+        engineers.map((engineer) => engineer.id)
+          .filter((id) => id > ids[2]).slice(0, 3),
+      );
     }
   };
 
@@ -47,7 +52,7 @@ function EngineersList() {
             </NavLink>
           );
         })}
-        <button type="button" className={`next carousel-btn ${showIds[showIds.length - 1] === engineers.length ? 'disabled' : ''}`} onClick={() => handleNextClick(showIds)}>
+        <button type="button" className={`next carousel-btn ${showIds[showIds.length - 1] === lastId(engineers) ? 'disabled' : ''}`} onClick={() => handleNextClick(showIds)}>
           { /* eslint-disable jsx-a11y/control-has-associated-label */ }
           <i className="bi bi-caret-right" />
         </button>
