@@ -17,10 +17,12 @@
 .back-btn {
   top: 100% !important;
 }
+
 .name {
   text-transform: uppercase !important;
-  white-space:nowrap;
+  white-space: nowrap;
 }
+
 .details {
   position: relative;
 }
@@ -49,6 +51,7 @@
     overflow-x: scroll;
     justify-content: flex-start;
   }
+
   .name {
     text-align: center !important;
     margin-top: -14%;
@@ -63,7 +66,7 @@
   .description {
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     text-indent: 30px;
@@ -74,5 +77,4 @@
   .white-div {
     background-color: #fff !important;
   }
-
 }

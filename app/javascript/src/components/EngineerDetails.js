@@ -47,9 +47,9 @@ const EngineerDetails = () => {
     <>
       <div className="py-4 my-container">
         <div className="engineer-details row row align-items-md-stretch">
-        <Link to="/" className="prev carousel-btn back-btn">
-        <i className="bi bi-caret-left float-end" />
-      </Link>
+          <Link to="/" className="prev carousel-btn back-btn">
+            <i className="bi bi-caret-left float-end" />
+          </Link>
           <div className="col-md-6">
             <div className="h-200 p-5">
               <img src={photo} alt="Engineer" />
@@ -82,10 +82,10 @@ const EngineerDetails = () => {
                 </p>
               </div>
               <div className="d-flex gap-3 p-3 justify-content-center">
-              <i className="bi bi-twitter" />
-              <i className="bi bi-facebook" />
-              <i className="bi bi-google" />
-            </div>
+                <i className="bi bi-twitter" />
+                <i className="bi bi-facebook" />
+                <i className="bi bi-google" />
+              </div>
               <div className="float-end">
 
                 <Link to="/" className="fw-bolder carousel-btn reserve-btn">
