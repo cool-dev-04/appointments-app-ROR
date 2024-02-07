@@ -1,45 +1,42 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addEngineer } from '../redux/reservation/reservationsSlice';
+import { addReservations } from '../redux/reservation/reservationsSlice';
 
 function ReservationForm() {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const speciality = e.target.speciality.value;
+    const userId = e.target.user_id.value;
+    const engineerId = e.target.engineer_id.value;
     const date = e.target.date.value;
-    const about = e.target.about.value;
-    const consultancyFee = e.target.consultancy_fee.value;
+    const city = e.target.city.value;
 
-    dispatch(addEngineer({
-      name,
-      speciality,
+    dispatch(addReservations({
+      user_id: userId,
+      engineer_id: engineerId,
       date,
-      about,
-      consultancy_fee: consultancyFee,
+      city,
     }));
 
-    e.target.name.value = '';
-    e.target.speciality.value = '';
+    e.target.user_id.value = '';
+    e.target.engineer_id.value = '';
     e.target.date.value = '';
-    e.target.about.value = '';
-    e.target.consultancy_fee.value = '';
+    e.target.city.value = '';
   };
 
   return (
     <form method="post" onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label htmlFor="name" className="form-label">
-          Name
-          <input type="text" className="form-control" id="name" />
+        <label htmlFor="user_id" className="form-label">
+          User ID
+          <input type="text" className="form-control" id="user_id" />
         </label>
       </div>
       <div className="mb-3">
-        <label htmlFor="speciality" className="form-label">
-          Speciality
-          <input type="text" className="form-control" id="speciality" />
+        <label htmlFor="engineer_id" className="form-label">
+          Engineer ID
+          <input type="text" className="form-control" id="engineer_id" />
         </label>
       </div>
       <div className="mb-3">
@@ -49,17 +46,12 @@ function ReservationForm() {
         </label>
       </div>
       <div className="mb-3">
-        <label htmlFor="about" className="form-label">
-          About
-          <textarea className="form-control" id="about" />
+        <label htmlFor="city" className="form-label">
+          City
+          <textarea className="form-control" id="city" />
         </label>
       </div>
-      <div className="mb-3">
-        <label htmlFor="consultancy_fee" className="form-label">
-          Consultancy Fee
-          <input type="number" className="form-control" id="consultancy_fee" />
-        </label>
-      </div>
+      
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   );
