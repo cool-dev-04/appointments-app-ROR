@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import { fetchEngineers, engineersState } from '../redux/engineers/engineersSlice';
 
 function EngineersList() {
@@ -27,7 +27,13 @@ function EngineersList() {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchEngineers());
+      dispatch(fetchEngineers())
+        .then((res) => {
+          if (res.payload.redirectToLogin) {
+            // redirect to index
+            redirect('/');
+          }
+        });
     }
   }, [dispatch, status]);
 

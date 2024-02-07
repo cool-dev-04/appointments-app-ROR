@@ -8,13 +8,12 @@ import Authspinner from './authspinner';
 
 function Register() {
   const [formData, setFormData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
-    role: 'user',
   });
 
-  const { name, email, password } = formData;
+  const { username, email, password } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,8 +30,8 @@ function Register() {
 
     if (isSuccess && user) {
       toast.success(message);
-      navigate('/');
       dispatch(reset());
+      navigate('/');
     }
   }, [user, isSuccess, isError, message, navigate, dispatch]);
 
@@ -48,10 +47,9 @@ function Register() {
 
     const userData = {
       user: {
-        name,
+        username,
         email,
         password,
-        role: 'user',
       },
     };
 
@@ -64,16 +62,16 @@ function Register() {
 
   return (
     <>
-      <section className="register-tab">
+      <section>
         <h1 className="text-center" style={{ marginBottom: '5%' }}>Register</h1>
         <Form onSubmit={onSubmit}>
           <FloatingLabel
             controlId="floatingInput"
-            label="Your Name"
+            label="Your Username"
             className="mb-3"
-            value={name}
+            value={username}
           >
-            <Form.Control name="name" type="name" onChange={onChange} placeholder="Place your name" />
+            <Form.Control name="username" type="text" onChange={onChange} placeholder="Place your username" />
           </FloatingLabel>
           <FloatingLabel
             controlId="floatingInput"
@@ -91,7 +89,7 @@ function Register() {
           >
             <Form.Control name="password" type="password" onChange={onChange} placeholder="Place your password" />
           </FloatingLabel>
-          <Button variant="primary" type="submit" style={{ marginTop: '5%', backgroundColor: 'var(--primary-color)', borderColor: 'var(--primary-color)' }}>
+          <Button type="submit">
             Register
           </Button>
         </Form>

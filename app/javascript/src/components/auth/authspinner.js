@@ -1,6 +1,8 @@
+import React from 'react';
+
 function Authspinner() {
   return (
-    <div className="loadintSpinnerContainer">
+    <div className="loadingSpinnerContainer">
       <div className="loadingSpinner" />
     </div>
   );
