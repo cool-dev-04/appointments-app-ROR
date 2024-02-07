@@ -54,8 +54,7 @@
   justify-content: space-around;
   align-items: center;
 
-  .eng-details-link {
-    background-color: #fff !important;
+  .engineer-card {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -83,6 +82,14 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+
+.engineer {
+  text-decoration: none;
+}
+
+.engineer:hover {
+  color: rgb(90, 207, 12) !important;
 }
 
 .dotted-top-border {

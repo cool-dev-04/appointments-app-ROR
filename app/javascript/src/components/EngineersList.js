@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Navigate, redirect } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import { fetchEngineers, engineersState } from '../redux/engineers/engineersSlice';
 
 function EngineersList() {
@@ -49,13 +49,16 @@ function EngineersList() {
             name, id, photo, speciality,
           } = engineer;
           return (
-            <NavLink key={id} id={id} className={`item eng-details-link ${showIds.includes(engineer.id) ? 'active-item' : ''}`}>
+            <div key={id} id={id} className={`engineer-card ${showIds.includes(engineer.id) ? 'active-item' : 'item'}`}>
+
               <div className="engineer-img-container">
                 <img className="engineer-img" src={photo} alt={name} />
               </div>
-              <p className="text-dark">{name}</p>
-              <p className="text-body-tertiary dotted-top-border">{speciality}</p>
-            </NavLink>
+              <Link to={`engineersList/${engineer.id}`} className="engineer text-black">
+                <p>{name}</p>
+                <p className="text-body-tertiary dotted-top-border">{speciality}</p>
+              </Link>
+            </div>
           );
         })}
         <button type="button" className={`next carousel-btn ${showIds[showIds.length - 1] === lastId(engineers) ? 'disabled' : ''}`} onClick={() => handleNextClick(showIds)}>
