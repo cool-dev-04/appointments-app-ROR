@@ -30,8 +30,8 @@ function Register() {
 
     if (isSuccess && user) {
       toast.success(message);
-      navigate('/');
       dispatch(reset());
+      navigate('/');
     }
   }, [user, isSuccess, isError, message, navigate, dispatch]);
 
@@ -89,7 +89,7 @@ function Register() {
           >
             <Form.Control name="password" type="password" onChange={onChange} placeholder="Place your password" />
           </FloatingLabel>
-          <Button className="btn" type="submit">
+          <Button type="submit">
             Register
           </Button>
         </Form>
