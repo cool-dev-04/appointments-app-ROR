@@ -2,23 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import {
   fetchEngineers,
+  deleteEngineer,
   engineersState,
 } from '../redux/engineers/engineersSlice';
 
 function EngineersList({ showDeleteButton = false }) {
   const dispatch = useDispatch();
   const { engineers, error, status } = useSelector(engineersState);
-  const [showIds, setShowIds] = useState([1, 2, 3]);
 
-  const lastId = (engineers) => engineers.map((engineer) => engineer.id)[engineers.length - 1];
+  const engineersIds = (engineers) => engineers.map((engineer) => engineer.id);
+  const lastId = engineersIds(engineers)[engineers.length - 1];
+  const [showIds, setShowIds] = useState(engineersIds(engineers).slice(0, 3));
 
   const handlePrevClick = (ids) => {
-    if (showIds[0] > 1) {
+    if (showIds[0] > engineersIds(engineers)[0]) {
       setShowIds(
-        engineers
-          .map((engineer) => engineer.id)
+        engineersIds(engineers)
           .filter((id) => id < ids[0])
           .slice(-3),
       );
@@ -26,35 +28,29 @@ function EngineersList({ showDeleteButton = false }) {
   };
 
   const handleNextClick = (ids) => {
-    if (ids[ids.length - 1] < lastId(engineers)) {
+    if (ids[ids.length - 1] < lastId) {
       setShowIds(
-        engineers
-          .map((engineer) => engineer.id)
-          .filter((id) => id > ids[2])
+        engineersIds(engineers)
+          .filter((id) => id > ids[ids.length - 1])
           .slice(0, 3),
       );
     }
   };
 
   const handleDelete = async (engineerId) => {
-    try {
-      const response = await fetch(`/api/v1/engineers/${engineerId}`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        // Refresh engineer list after successful deletion
-        dispatch(fetchEngineers());
-      } else {
-        console.error('Failed to delete engineer');
-      }
-    } catch (error) {
-      console.error('Failed to delete engineer', error);
-    }
+    dispatch(deleteEngineer(engineerId));
+
+    const newEngineersIds = engineersIds(engineers).filter((id) => id !== engineerId);
+    const beginIndex = Math.max(newEngineersIds.indexOf(showIds[0]), 0);
+    // above line is to handle the case where the first visible engineer is deleted
+
+    setShowIds(newEngineersIds.slice(beginIndex, beginIndex + 3));
   };
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchEngineers());
+      dispatch(fetchEngineers())
+        .then((res) => setShowIds(engineersIds(res.payload).slice(0, 3)));
     }
   }, [dispatch, status]);
 
@@ -73,7 +69,7 @@ function EngineersList({ showDeleteButton = false }) {
       <div className="engineers-list">
         <button
           type="button"
-          className={`prev carousel-btn ${showIds[0] === 1 ? 'disabled' : ''}`}
+          className={`prev carousel-btn ${showIds[0] === engineersIds(engineers)[0] ? 'disabled' : ''}`}
           onClick={() => handlePrevClick(showIds)}
         >
           {/* eslint-disable jsx-a11y/control-has-associated-label */}
@@ -121,7 +117,7 @@ function EngineersList({ showDeleteButton = false }) {
         <button
           type="button"
           className={`next carousel-btn ${
-            showIds[showIds.length - 1] === lastId(engineers) ? 'disabled' : ''
+            showIds[showIds.length - 1] === lastId ? 'disabled' : ''
           }`}
           onClick={() => handleNextClick(showIds)}
         >

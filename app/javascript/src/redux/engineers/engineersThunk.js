@@ -19,4 +19,12 @@ const addEngineer = createAsyncThunk('engineers/AddEngineer', async (engineer) =
   return response;
 });
 
-export { fetchEngineers, addEngineer };
+const deleteEngineer = createAsyncThunk('engineers/deleteEngineer', async (engineerId) => {
+  const response = await axios.delete(`${EngineersURL}/${engineerId}`)
+    .then(({ data }) => data).catch((error) => {
+      throw new Error(`HTTP error! Error: ${error}`);
+    });
+  return response;
+});
+
+export { fetchEngineers, addEngineer, deleteEngineer };

@@ -1,6 +1,6 @@
 class Api::V1::EngineersController < ApplicationController
   def index
-    @engineers = Engineer.select(:id, :name, :speciality, :photo).all
+    @engineers = Engineer.select(:id, :name, :speciality, :photo).all.order(created_at: :asc)
     if @engineers.empty?
       render json: { message: 'No engineers found' }
     else
@@ -37,7 +37,7 @@ class Api::V1::EngineersController < ApplicationController
 
       # Then delete the engineer
       if @engineer.destroy
-        render json: { message: 'Engineer and associated consultations deleted' }
+        render json: { id: @engineer.id, message: 'Engineer and associated consultations deleted' }
       else
         render json: { error: 'Unable to delete engineer' }, status: :unprocessable_entity
         raise ActiveRecord::Rollback # Rollback transaction
