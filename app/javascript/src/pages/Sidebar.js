@@ -13,6 +13,10 @@ const Sidebar = () => {
     setIsMenuClicked(!isMenuClicked);
     navRef.current.classList.toggle('responsive_menu');
   };
+  const loggedIn = localStorage.getItem('logged_in');
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user);
+  console.log(loggedIn);
 
   return (
     <div className="d-flex vh-100 main-container">
@@ -34,6 +38,7 @@ const Sidebar = () => {
             <button type="button" className="nav-btn nav-close-btn" onClick={hideSidebar}><i className="bi bi-x-lg" /></button>
 
             <img src={logo1} className="logo" alt="logo" />
+            {loggedIn }
             <ul className="nav nav-pills flex-column p-0 mt-5">
               <li className="nav-item p-1">
                 <NavLink to="/" className="nav-link">

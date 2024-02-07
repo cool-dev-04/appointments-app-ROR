@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  namespace :api do
+  devise_for :users, defaults: { format: :json }
+
+  namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :engineers, except: [:new, :edit, :update]
-      resources :users, only: [:create]
-      resources :sessions, only: [:create, :destroy]
       resources :consultations, only: [:index, :create, :destroy]
     end
   end
