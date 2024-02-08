@@ -3,7 +3,60 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/api/v1/consultations":
+    get:
+      summary: list consultations
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create consultation
+      responses:
+        '200':
+          description: successful
+  "/api/v1/consultations/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete consultation
+      responses:
+        '200':
+          description: successful
+  "/api/v1/engineers":
+    get:
+      summary: list engineers
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create engineer
+      responses:
+        '200':
+          description: successful
+  "/api/v1/engineers/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show engineer
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete engineer
+      responses:
+        '200':
+          description: successful
 servers:
 - url: https://{defaultHost}
   variables:
