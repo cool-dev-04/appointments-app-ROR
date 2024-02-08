@@ -8,6 +8,23 @@ require 'rspec/rails'
 require 'capybara/rails'
 require_relative 'support/database_cleaner'
 require_relative 'support/util'
+
+module DeviseRequestSpecHelpers
+  include Warden::Test::Helpers
+
+  def sign_in(user)
+    login_as(user, scope: :user)
+  end
+
+  def sign_out
+    logout(:user)
+  end
+end
+
+RSpec.configure do |config|
+  config.include DeviseRequestSpecHelpers, type: :request
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -65,9 +82,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  RSpec.configure do |rspec_config|
-    rspec_config.include FactoryBot::Syntax::Methods
-  end
+end
+
+RSpec.configure do |rspec_config|
+  rspec_config.include FactoryBot::Syntax::Methods
+end
+
+RSpec.configure do |config|
+  config.include Warden::Test::Helpers
 end
 
 Shoulda::Matchers.configure do |config|
