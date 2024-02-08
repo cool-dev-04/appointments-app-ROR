@@ -16,7 +16,7 @@ function EngineersList({ showDeleteButton = false }) {
   const lastId = engineersIds(engineers)[engineers.length - 1];
   const [showIds, setShowIds] = useState(engineersIds(engineers).slice(0, 3));
   const token = JSON.parse(localStorage.getItem('token'));
-  console.log(showIds, 'showIds');
+  // console.log(showIds, 'showIds');
 
   const handlePrevClick = (ids) => {
     if (showIds[0] > engineersIds(engineers)[0]) {
@@ -49,9 +49,9 @@ function EngineersList({ showDeleteButton = false }) {
   };
 
   useEffect(() => {
-    console.log(status, 'status', engineers, 'engineers', error, 'error');
+    // console.log(status, 'status', engineers, 'engineers', error, 'error');
     if (status === 'idle') {
-      dispatch(fetchEngineers(token))
+      dispatch(fetchEngineers())
         .then((res) => {
           setShowIds(engineersIds(res.payload).slice(0, 3));
           if (res.payload.redirectToLogin) {

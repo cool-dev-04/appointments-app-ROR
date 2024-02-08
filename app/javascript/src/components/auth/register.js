@@ -28,7 +28,7 @@ function Register() {
   useEffect(() => {
     if (isSuccess && user) {
       toast.success(message);
-      dispatch(fetchEngineers(token))
+      dispatch(fetchEngineers())
         .then(() => navigate('/'));
       // navigate('/');
     }

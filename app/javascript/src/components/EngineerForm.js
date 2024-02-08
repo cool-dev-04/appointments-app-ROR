@@ -13,7 +13,7 @@ function EngineerForm() {
     const photo = e.target.photo.value;
     const about = e.target.about.value;
     const consultancyFee = e.target.consultancy_fee.value;
-    console.log(token);
+    // console.log(token);
     dispatch(addEngineer({
       name,
       speciality,

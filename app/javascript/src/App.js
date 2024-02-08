@@ -23,7 +23,6 @@ function App() {
     if (isSuccess && token) {
       setLoggedIn(true);
       dispatch(reset());
-      // dispatch(fetchEngineers(token));
     } else if (!token) {
       setLoggedIn(false);
     }
