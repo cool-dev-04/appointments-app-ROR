@@ -13,9 +13,9 @@ import Login from './components/auth/login';
 import { reset } from './redux/auth/authSlice';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
-  const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem('token'));
+  const [loggedIn, setLoggedIn] = useState(token !== null);
+  const dispatch = useDispatch();
   const { isSuccess } = useSelector((state) => state.auth);
 
   useEffect(() => {

@@ -16,6 +16,7 @@ function EngineersList({ showDeleteButton = false }) {
   const lastId = engineersIds(engineers)[engineers.length - 1];
   const [showIds, setShowIds] = useState(engineersIds(engineers).slice(0, 3));
   const token = JSON.parse(localStorage.getItem('token'));
+  console.log(showIds, 'showIds');
 
   const handlePrevClick = (ids) => {
     if (showIds[0] > engineersIds(engineers)[0]) {
