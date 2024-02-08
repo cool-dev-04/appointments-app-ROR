@@ -29,10 +29,19 @@ class Api::V1::EngineersController < ApplicationController
 
   def destroy
     @engineer = Engineer.find(params[:id])
-    if @engineer.destroy
-      render json: { message: 'Engineer deleted' }
-    else
-      render json: { error: 'Unable to delete engineer' }
+
+    # Use a transaction to ensure atomicity
+    ActiveRecord::Base.transaction do
+      # Delete associated consultations
+      @engineer.consultations.destroy_all
+
+      # Then delete the engineer
+      if @engineer.destroy
+        render json: { id: @engineer.id, message: 'Engineer and associated consultations deleted' }
+      else
+        render json: { error: 'Unable to delete engineer' }, status: :unprocessable_entity
+        raise ActiveRecord::Rollback # Rollback transaction
+      end
     end
   end
 
