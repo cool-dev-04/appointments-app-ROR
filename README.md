@@ -11,7 +11,6 @@
 ## 📗 Table of Contents
 
 - [📖 Appointments App ](#-appointments-app-)
-  - [📺 Live Demo ](#-live-demo-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -20,6 +19,7 @@
     - [Setup](#setup)
     - [Install](#install)
     - [Usage](#usage)
+  - [Kanban Board ](#kanban-board-)
   - [👥 Authors ](#-authors-)
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
@@ -31,11 +31,7 @@
 
 # 📖 Appointments App <a name="about-project"></a>
 
-This is the Appointments App, a web application built with Ruby on Rails, PostgreSQL, JavaScript, React, and Redux. It allows users to manage appointments and schedule appointments with service providers.
-
-## 📺 Live Demo <a name="live-demo"></a>
-
-...
+This is the Appointments App, a web application built with Ruby on Rails, PostgreSQL, JavaScript, React, and Redux. It allows users to manage appointments and schedule appointments with engineers.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -136,6 +132,18 @@ to run tests:
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- KANBAN BOARD -->
+
+## Kanban Board <a name="kanban-board"></a>
+
+- [Project Board](https://github.com/users/mohamedSabry0/projects/13/views/1)
+- ![Project Board](https://github.com/mohamedSabry0/appointments_app/assets/22299539/4d9cbc21-df6e-45d9-aaad-860f9144ada4)
+
+- Our team consists of 3 members:
+  [@erickma1](https://github.com/erickma1),
+  [@MohammadYaser](https://github.com/MohammadYaser),
+  [@mohamedSabry0](https://github.com/mohamedSabry0)
 
 ## 👥 Authors <a name="author"></a>
 
