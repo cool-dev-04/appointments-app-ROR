@@ -23,7 +23,7 @@ function ReservationForm() {
       city,
     };
     console.log(data, 'data');
-    dispatch(addReservations());
+    dispatch(addReservations(data));
 
     e.target.engineer_id.value = '';
     e.target.date.value = '';

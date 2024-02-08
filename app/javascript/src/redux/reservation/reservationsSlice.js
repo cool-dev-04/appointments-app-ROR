@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { addReservations, fetchReservations } from './reservationsThunk';
 
 const initialState = {
-  engineers: [],
+  reservations: [],
   status: 'idle', // 'idle', 'loading', 'succeeded', 'failed'
   error: null,
   message: null,
