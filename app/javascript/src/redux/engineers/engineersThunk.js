@@ -2,7 +2,6 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const EngineersURL = '/api/v1/engineers';
-// const token = JSON.parse(localStorage.getItem('token'));
 const headers = () => ({ headers: { Authorization: JSON.parse(localStorage.getItem('token')) } });
 
 const fetchEngineers = createAsyncThunk('engineers/fetchEngineers', async () => {
@@ -14,7 +13,6 @@ const fetchEngineers = createAsyncThunk('engineers/fetchEngineers', async () => 
 });
 
 const addEngineer = createAsyncThunk('engineers/AddEngineer', async (engineer) => {
-  // console.log(token, 'token');
   const response = await axios.post(EngineersURL, engineer, headers())
     .then(({ data }) => data).catch((error) => {
       throw new Error(`HTTP error! Error: ${error}`);

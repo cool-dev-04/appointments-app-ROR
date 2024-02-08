@@ -114,7 +114,9 @@ it will install the required gemfile for running the project
 run the following commands to create and migrate:
 
 ```bash
-  rails db:prepare
+  rails db:create
+  rails db:migrate
+  rails db:seed
 ```
 
 ### Usage
@@ -130,7 +132,7 @@ it will run the the server on `localhost:3000`
 to run tests:
 
 ```sh
-   rspec
+   rspec --format doc
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

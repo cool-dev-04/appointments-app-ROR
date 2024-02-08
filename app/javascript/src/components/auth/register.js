@@ -30,7 +30,6 @@ function Register() {
       toast.success(message);
       dispatch(fetchEngineers())
         .then(() => navigate('/'));
-      // navigate('/');
     }
 
     if (isError) {
