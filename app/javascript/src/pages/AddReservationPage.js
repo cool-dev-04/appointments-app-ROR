@@ -5,7 +5,7 @@ function AddReservationPage() {
   return (
     <div className="d-flex justify-content-center flex-column align-items-center">
       <h1>Add Reservation</h1>
-      <ReservationForm />
+        <ReservationForm />
     </div>
   );
 }
