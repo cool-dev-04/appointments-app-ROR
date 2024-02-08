@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { login } from '../../redux/auth/authSlice';
 import Authspinner from './authspinner';
+import { fetchEngineers } from '../../redux/engineers/engineersThunk';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -21,12 +22,19 @@ function Login() {
     user, isLoading, isSuccess, isError, message,
   } = useSelector((state) => state.auth);
 
+  const token = JSON.parse(localStorage.getItem('token'));
+
   useEffect(() => {
     if (isSuccess && user) {
       toast.success(message);
+      dispatch(fetchEngineers(token));
       navigate('/');
     }
-  }, [user, isSuccess, isError, message, navigate, dispatch]);
+
+    if (isError) {
+      toast.error(message);
+    }
+  }, [user, isSuccess, navigate, dispatch, token, isError, message]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

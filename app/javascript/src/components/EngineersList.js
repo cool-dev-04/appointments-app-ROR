@@ -7,8 +7,9 @@ function EngineersList() {
   const dispatch = useDispatch();
   const { engineers, error, status } = useSelector(engineersState);
   const engineersIds = (engineers) => engineers.map((engineer) => engineer.id);
-  const lastId = engineersIds(engineers)[engineers.length - 1];
+  const lastId = (engineers) => engineersIds(engineers)[engineers.length - 1];
   const [showIds, setShowIds] = useState(engineersIds(engineers).slice(0, 3));
+  const token = JSON.parse(localStorage.getItem('token'));
 
   const handlePrevClick = (ids) => {
     if (showIds[0] > engineersIds(engineers)[0]) {
@@ -21,7 +22,7 @@ function EngineersList() {
   };
 
   const handleNextClick = (ids) => {
-    if (ids[ids.length - 1] < lastId) {
+    if (ids[ids.length - 1] < lastId(engineers)) {
       setShowIds(
         engineersIds(engineers)
           .filter((id) => id > ids[ids.length - 1])
@@ -30,9 +31,11 @@ function EngineersList() {
     }
   };
 
+  // console.log(status, 'status', engineers, 'engineers', error, 'error');
   useEffect(() => {
+    console.log(status, 'status', engineers, 'engineers', error, 'error');
     if (status === 'idle') {
-      dispatch(fetchEngineers())
+      dispatch(fetchEngineers(token))
         .then((res) => {
           setShowIds(engineersIds(res.payload).slice(0, 3));
           if (res.payload.redirectToLogin) {
@@ -40,7 +43,7 @@ function EngineersList() {
           }
         });
     }
-  }, [dispatch, status]);
+  }, [dispatch, status, engineers, token, error]);
 
   if (status === 'succeeded') {
     if (!Array.isArray(engineers) || engineers.length === 0) {
@@ -55,6 +58,7 @@ function EngineersList() {
 
     return (
       <div className="engineers-list">
+        {status === 'loading' && <p>Loading...</p>}
         <button
           type="button"
           className={`prev carousel-btn ${showIds[0] === engineersIds(engineers)[0] ? 'disabled' : ''}`}
@@ -93,7 +97,7 @@ function EngineersList() {
         <button
           type="button"
           className={`next carousel-btn ${
-            showIds[showIds.length - 1] === lastId ? 'disabled' : ''
+            showIds[showIds.length - 1] === lastId(engineers) ? 'disabled' : ''
           }`}
           onClick={() => handleNextClick(showIds)}
         >

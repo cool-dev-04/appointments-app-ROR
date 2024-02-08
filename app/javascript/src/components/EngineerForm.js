@@ -4,6 +4,7 @@ import { addEngineer } from '../redux/engineers/engineersSlice';
 
 function EngineerForm() {
   const dispatch = useDispatch();
+  const token = JSON.parse(localStorage.getItem('token'));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ function EngineerForm() {
       photo,
       about,
       consultancy_fee: consultancyFee,
-    }));
+    }, token));
 
     e.target.name.value = '';
     e.target.speciality.value = '';
