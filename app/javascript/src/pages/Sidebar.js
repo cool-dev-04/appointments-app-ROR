@@ -33,6 +33,7 @@ const Sidebar = () => {
   };
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/');
   };
 
   return (

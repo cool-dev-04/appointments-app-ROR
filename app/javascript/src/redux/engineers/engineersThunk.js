@@ -14,26 +14,14 @@ const fetchEngineers = createAsyncThunk('engineers/fetchEngineers', async (token
     },
   })
     .then(({ data }) => data).catch((error) => {
-      if (error.response.status === 401) {
-        localStorage.removeItem('token');
-        return { message: 'Unauthorized' };
-      }
       throw new Error(`HTTP error! Error: ${error}`);
     });
   return response;
 });
 
-const addEngineer = createAsyncThunk('engineers/AddEngineer', async (engineer, token) => {
-  const response = await axios.post(EngineersURL, {
-    headers: {
-      Authorization: token,
-    },
-  }, engineer)
+const addEngineer = createAsyncThunk('engineers/AddEngineer', async (engineer) => {
+  const response = await axios.post(EngineersURL, engineer, { headers })
     .then(({ data }) => data).catch((error) => {
-      if (error.response.status === 401) {
-        localStorage.removeItem('token');
-        return { message: 'Unauthorized' };
-      }
       throw new Error(`HTTP error! Error: ${error}`);
     });
   return response;

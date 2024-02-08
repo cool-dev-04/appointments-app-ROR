@@ -43,6 +43,7 @@ function App() {
               <Route path="myConsultation" element={<HomePage />} />
               <Route path="addEngineer" element={<AddEngineerPage />} />
               <Route path="deleteEngineer" element={<DeleteEngineer />} />
+              <Route path="/*" element={<HomePage />} />
 
             </>
           )}
@@ -50,6 +51,7 @@ function App() {
             <>
               <Route index element={<Login />} />
               <Route path="register" element={<Register />} />
+              <Route path="/*" element={<Login />} />
             </>
           )}
 
