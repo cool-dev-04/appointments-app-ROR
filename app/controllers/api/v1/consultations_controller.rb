@@ -17,7 +17,6 @@ class Api::V1::ConsultationsController < ApplicationController
       render json: consultations_data
     end
   end
-  
 
   def create
     @consultation = Consultation.new(consultation_params)

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function ConsultationList() {
   const [consultations, setConsultations] = useState([]);
@@ -9,7 +9,7 @@ function ConsultationList() {
   useEffect(() => {
     const fetchConsultations = async () => {
       try {
-        const response = await axios.get("/api/v1/consultations");
+        const response = await axios.get('/api/v1/consultations');
         setConsultations(response.data);
         setLoading(false);
       } catch (error) {
@@ -26,7 +26,12 @@ function ConsultationList() {
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return (
+      <p>
+        Error:
+        {error}
+      </p>
+    );
   }
 
   if (!consultations || consultations.length === 0) {
@@ -35,7 +40,7 @@ function ConsultationList() {
 
   return (
     <div className="table-responsive-sm table-div">
-      <table class="table table-striped table-hover table-bordered w-100">
+      <table className="table table-striped table-hover table-bordered w-100">
         <thead>
           <tr>
             <th scope="col">User</th>
@@ -46,7 +51,7 @@ function ConsultationList() {
         </thead>
         <tbody>
           {consultations.map((consultation) => (
-            <tr>
+            <tr key={consultation.id}>
               <td>{consultation.user_name}</td>
               <td>{consultation.engineer_name}</td>
               <td>{consultation.city}</td>
