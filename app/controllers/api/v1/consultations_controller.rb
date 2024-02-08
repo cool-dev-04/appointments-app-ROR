@@ -4,12 +4,11 @@ class Api::V1::ConsultationsController < ApplicationController
     if @consultations.empty?
       render json: { message: 'No consultations found' }
     else
-      # Serialize the consultations data to include user and engineer names
       consultations_data = @consultations.map do |consultation|
         {
           id: consultation.id,
-          user_name: consultation.user&.username, # Get user name if present
-          engineer_name: consultation.engineer&.name, # Get engineer name if present
+          user_name: consultation.user&.username,
+          engineer_name: consultation.engineer&.name,
           city: consultation.city,
           date: consultation.date
         }
