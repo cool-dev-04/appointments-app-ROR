@@ -34,7 +34,28 @@ function ConsultationList() {
   }
 
   return (
-   
+    <div className="table-responsive-sm table-div">
+      <table class="table table-striped table-hover table-bordered w-100">
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Engineer</th>
+            <th scope="col">City</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {consultations.map((consultation) => (
+            <tr>
+              <td>{consultation.user_name}</td>
+              <td>{consultation.engineer_name}</td>
+              <td>{consultation.city}</td>
+              <td>{consultation.date}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
