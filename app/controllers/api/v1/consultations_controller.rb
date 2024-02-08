@@ -1,10 +1,19 @@
 class Api::V1::ConsultationsController < ApplicationController
   def index
-    @consultations = Consultation.select(:id, :user_id, :engineer_id, :city, :date).all
+    @consultations = Consultation.includes(:user, :engineer).select(:id, :user_id, :engineer_id, :city, :date).all
     if @consultations.empty?
       render json: { message: 'No consultations found' }
     else
-      render json: @consultations
+      consultations_data = @consultations.map do |consultation|
+        {
+          id: consultation.id,
+          user_name: consultation.user&.username,
+          engineer_name: consultation.engineer&.name,
+          city: consultation.city,
+          date: consultation.date
+        }
+      end
+      render json: consultations_data
     end
   end
 
