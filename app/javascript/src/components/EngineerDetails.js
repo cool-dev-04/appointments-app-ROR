@@ -94,7 +94,7 @@ const EngineerDetails = () => {
               </div>
               <div className="float-end">
 
-                <Link to="/" className="fw-bolder carousel-btn reserve-btn">
+                <Link to={`consultateEngineer/${engineerId}`} className="fw-bolder carousel-btn reserve-btn">
                   <span className="fs-5 setting-icon">
 
                     <i className="bi bi-gear" />

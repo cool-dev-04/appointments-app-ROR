@@ -38,6 +38,7 @@ function App() {
             <>
               <Route index element={<HomePage />} />
               <Route path="/engineersList/:engineerId" element={<EngineerDetails />} />
+              <Route path="consultateEngineer/:engineerId" element={<AddReservationPage />} />
               <Route path="consultateEngineer" element={<AddReservationPage />} />
               <Route path="myConsultation" element={<HomePage />} />
               <Route path="addEngineer" element={<AddEngineerPage />} />
