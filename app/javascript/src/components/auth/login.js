@@ -3,8 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
-import { login, reset } from '../../redux/auth/authSlice';
+import {
+  login,
+  // reset
+} from '../../redux/auth/authSlice';
 import Authspinner from './authspinner';
+// import { fetchEngineers } from '../../redux/engineers/engineersSlice';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -24,8 +28,10 @@ function Login() {
   useEffect(() => {
     if (isSuccess && user) {
       toast.success(message);
-      dispatch(reset());
+      // dispatch(reset());
+      console.log(user, isSuccess);
       navigate('/');
+      // dispatch(fetchEngineers());
     }
   }, [user, isSuccess, isError, message, navigate, dispatch]);
 

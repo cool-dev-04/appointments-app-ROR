@@ -14,7 +14,7 @@ const fetchEngineers = createAsyncThunk('engineers/fetchEngineers', async () => 
     .then(({ data }) => data).catch((error) => {
       if (error.response.status === 401) {
         localStorage.removeItem('token');
-        return rejectWithValue({ message: 'Unauthorized', redirectToLogin: true });
+        return { message: 'Unauthorized' };
       }
       throw new Error(`HTTP error! Error: ${error}`);
     });
@@ -26,7 +26,7 @@ const addEngineer = createAsyncThunk('engineers/AddEngineer', async (engineer) =
     .then(({ data }) => data).catch((error) => {
       if (error.response.status === 401) {
         localStorage.removeItem('token');
-        return rejectWithValue({ message: 'Unauthorized', redirectToLogin: true });
+        return { message: 'Unauthorized' };
       }
       throw new Error(`HTTP error! Error: ${error}`);
     });

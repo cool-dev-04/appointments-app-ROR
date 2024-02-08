@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { logout, reset } from '../redux/auth/authSlice';
 import logo1 from '../images/logo1.png';
@@ -9,6 +9,19 @@ const Sidebar = () => {
   const navRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    isSuccess,
+  } = useSelector((state) => state.auth);
+
+  const token = JSON.parse(localStorage.getItem('token'));
+  const loggedIn = token !== null;
+
+  useEffect(() => {
+    if (isSuccess && !loggedIn) {
+      navigate('/');
+      dispatch(reset());
+    }
+  }, [isSuccess, navigate, loggedIn, dispatch]);
 
   const showSidebar = () => {
     setIsMenuClicked(!isMenuClicked);
@@ -20,12 +33,7 @@ const Sidebar = () => {
   };
   const handleLogout = () => {
     dispatch(logout());
-    dispatch(reset());
-    navigate('/');
   };
-
-  const token = JSON.parse(localStorage.getItem('token'));
-  const loggedIn = token !== null;
 
   return (
     <div className="d-flex vh-100 main-container">
@@ -48,7 +56,7 @@ const Sidebar = () => {
 
             <img src={logo1} className="logo" alt="logo" />
             <ul className="nav nav-pills flex-column p-0 mt-5">
-              {!loggedIn && (
+              {loggedIn && (
                 <>
                   <li className="nav-item p-1">
                     <NavLink to="/" className="nav-link">
@@ -82,7 +90,7 @@ const Sidebar = () => {
                   </li>
                 </>
               )}
-              {loggedIn && (
+              {!loggedIn && (
                 <>
                   <li className="nav-item p-1">
                     <NavLink to="/register" className="nav-link">

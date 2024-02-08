@@ -25,4 +25,10 @@ class Api::V1::ConsultationsController < ApplicationController
       render json: { error: 'Unable to delete consultation' }
     end
   end
+
+  private
+
+  def consultation_params
+    params.require(:consultation).permit(:user_id, :engineer_id, :date, :city)
+  end
 end

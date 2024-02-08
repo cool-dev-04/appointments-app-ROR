@@ -47,7 +47,7 @@ export const logout = createAsyncThunk('auth/logout', async () => {
         Authorization: token,
       },
     });
-    if (response.status === 200) {
+    if (response.status === 204 || response.statusText === 'No Content') {
       localStorage.removeItem('user');
       localStorage.removeItem('token');
     }
