@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { createAsyncThunk, rejectWithValue } from '@reduxjs/toolkit';
-// import { Navigate } from 'react-router-dom';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const EngineersURL = '/api/v1/engineers';
 const token = JSON.parse(localStorage.getItem('token'));

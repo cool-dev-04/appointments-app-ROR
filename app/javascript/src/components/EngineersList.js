@@ -9,7 +9,6 @@ function EngineersList() {
   const engineersIds = (engineers) => engineers.map((engineer) => engineer.id);
   const lastId = engineersIds(engineers)[engineers.length - 1];
   const [showIds, setShowIds] = useState(engineersIds(engineers).slice(0, 3));
-  console.log('EngineersList component rendered', status);
 
   const handlePrevClick = (ids) => {
     if (showIds[0] > engineersIds(engineers)[0]) {
@@ -30,16 +29,6 @@ function EngineersList() {
       );
     }
   };
-
-  // const handleDelete = async (engineerId) => {
-  //   dispatch(deleteEngineer(engineerId));
-
-  //   const newEngineersIds = engineersIds(engineers).filter((id) => id !== engineerId);
-  //   const beginIndex = Math.max(newEngineersIds.indexOf(showIds[0]), 0);
-  //   // above line is to handle the case where the first visible engineer is deleted
-
-  //   setShowIds(newEngineersIds.slice(beginIndex, beginIndex + 3));
-  // };
 
   useEffect(() => {
     if (status === 'idle') {
@@ -118,9 +107,5 @@ function EngineersList() {
     return <p>{error}</p>;
   }
 }
-
-// Define propTypes for EngineersList component
-
-// Define defaultProps for EngineersList component
 
 export default EngineersList;

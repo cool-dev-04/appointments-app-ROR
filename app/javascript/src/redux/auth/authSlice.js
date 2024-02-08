@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { Navigate } from 'react-router-dom';
 import authServices from './authService';
 
 const user = JSON.parse(localStorage.getItem('user'));
