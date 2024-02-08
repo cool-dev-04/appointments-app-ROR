@@ -100,6 +100,15 @@ Install this project with:
   yarn install
 ```
 
+You will need to follow these steps to have your own set of related project secrets:
+
+- delete `config/credentials.yml.enc` file
+- use this command `EDITOR="code --wait" bin/rails credentials:edit`
+- under `secret_base_key` add this line `devise_jwt_secret_key:`
+- in another terminal run `bundle exec rails secret`
+- take the output and use it as value for `devise_jwt_secret_key`
+- save the file and close it
+
 it will install the required gemfile for running the project
 
 run the following commands to create and migrate:
