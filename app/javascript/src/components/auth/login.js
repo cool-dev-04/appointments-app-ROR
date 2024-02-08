@@ -24,8 +24,8 @@ function Login() {
   useEffect(() => {
     if (isSuccess && user) {
       toast.success(message);
-      navigate('/');
       dispatch(reset());
+      navigate('/');
     }
   }, [user, isSuccess, isError, message, navigate, dispatch]);
 
@@ -76,7 +76,7 @@ function Login() {
           >
             <Form.Control name="password" type="password" onChange={handleChange} placeholder="Password" />
           </FloatingLabel>
-          <Button variant="primary" type="submit" style={{ marginTop: '5%', backgroundColor: 'var(--primary-color)', borderColor: 'var(--primary-color)' }}>
+          <Button type="submit">
             Login
           </Button>
         </Form>
