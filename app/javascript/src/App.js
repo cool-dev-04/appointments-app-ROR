@@ -6,6 +6,7 @@ import Sidebar from './pages/Sidebar';
 import HomePage from './pages/HomePage';
 import AddEngineerPage from './pages/AddEngineerPage';
 import EngineerDetails from './components/EngineerDetails';
+import DeleteEngineer from './pages/DeleteEngineer';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
 
@@ -26,7 +27,7 @@ function App() {
               <Route path="consultateEngineer" element={<HomePage />} />
               <Route path="myConsultation" element={<HomePage />} />
               <Route path="addEngineer" element={<AddEngineerPage />} />
-              <Route path="deleteEngineer" element={<HomePage />} />
+              <Route path="deleteEngineer" element={<DeleteEngineer />} />
 
             </>
           ) }
