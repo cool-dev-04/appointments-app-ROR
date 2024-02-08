@@ -8,6 +8,7 @@ RSpec.describe 'api/v1/consultations', type: :request do
     engineer
   end
 
+  # rubocop:disable Metrics/BlockLength
   path '/api/v1/consultations' do
     get('list consultations') do
       response(200, 'successful') do
@@ -40,7 +41,7 @@ RSpec.describe 'api/v1/consultations', type: :request do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true) # You'll want to customize the parameter types...
+              example: JSON.parse(response.body, symbolize_names: true) # You'll want to customize the parameter types.
 
             }
           }
@@ -71,3 +72,5 @@ RSpec.describe 'api/v1/consultations', type: :request do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
