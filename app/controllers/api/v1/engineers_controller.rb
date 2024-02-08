@@ -1,4 +1,6 @@
 class Api::V1::EngineersController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index]
+
   def index
     @engineers = Engineer.select(:id, :name, :speciality, :photo).all.order(created_at: :asc)
     if @engineers.empty?

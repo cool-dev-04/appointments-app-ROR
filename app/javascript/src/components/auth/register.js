@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
-import { register, reset } from '../../redux/auth/authSlice';
+import { register } from '../../redux/auth/authSlice';
 import Authspinner from './authspinner';
+import { fetchEngineers } from '../../redux/engineers/engineersThunk';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -22,18 +23,20 @@ function Register() {
     user, isLoading, isSuccess, isError, message,
   } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-      dispatch(reset());
-    }
+  const token = JSON.parse(localStorage.getItem('token'));
 
+  useEffect(() => {
     if (isSuccess && user) {
       toast.success(message);
-      dispatch(reset());
-      navigate('/');
+      dispatch(fetchEngineers())
+        .then(() => navigate('/'));
+      // navigate('/');
     }
-  }, [user, isSuccess, isError, message, navigate, dispatch]);
+
+    if (isError) {
+      toast.error(message);
+    }
+  }, [user, isSuccess, navigate, dispatch, token, isError, message]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({

@@ -12,10 +12,11 @@ import {
 function EngineersList({ showDeleteButton = false }) {
   const dispatch = useDispatch();
   const { engineers, error, status } = useSelector(engineersState);
-
   const engineersIds = (engineers) => engineers.map((engineer) => engineer.id);
   const lastId = engineersIds(engineers)[engineers.length - 1];
   const [showIds, setShowIds] = useState(engineersIds(engineers).slice(0, 3));
+  const token = JSON.parse(localStorage.getItem('token'));
+  // console.log(showIds, 'showIds');
 
   const handlePrevClick = (ids) => {
     if (showIds[0] > engineersIds(engineers)[0]) {
@@ -48,17 +49,17 @@ function EngineersList({ showDeleteButton = false }) {
   };
 
   useEffect(() => {
+    // console.log(status, 'status', engineers, 'engineers', error, 'error');
     if (status === 'idle') {
       dispatch(fetchEngineers())
         .then((res) => {
           setShowIds(engineersIds(res.payload).slice(0, 3));
           if (res.payload.redirectToLogin) {
-            // redirect to index
             redirect('/');
           }
         });
     }
-  }, [dispatch, status]);
+  }, [dispatch, status, engineers, token, error]);
 
   if (status === 'succeeded') {
     if (!Array.isArray(engineers) || engineers.length === 0) {
@@ -73,6 +74,7 @@ function EngineersList({ showDeleteButton = false }) {
 
     return (
       <div className="engineers-list">
+        {status === 'loading' && <p>Loading...</p>}
         <button
           type="button"
           className={`prev carousel-btn ${showIds[0] === engineersIds(engineers)[0] ? 'disabled' : ''}`}

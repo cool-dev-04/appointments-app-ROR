@@ -20,8 +20,14 @@ const EngineerDetails = () => {
   } = engineerDetails;
 
   const fetchEnginnerDetails = useCallback(async () => {
+    const token = JSON.parse(localStorage.getItem('token'));
+
     const res = await axios
-      .get(`/api/v1/engineers/${engineerId}`)
+      .get(`/api/v1/engineers/${engineerId}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .catch((err) => {
         setError(err);
       });
@@ -88,7 +94,7 @@ const EngineerDetails = () => {
               </div>
               <div className="float-end">
 
-                <Link to="/" className="fw-bolder carousel-btn reserve-btn">
+                <Link to={`/consultateEngineer/${engineerId}`} className="fw-bolder carousel-btn reserve-btn">
                   <span className="fs-5 setting-icon">
 
                     <i className="bi bi-gear" />

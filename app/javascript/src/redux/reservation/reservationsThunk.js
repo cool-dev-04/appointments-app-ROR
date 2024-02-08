@@ -1,18 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const EngineersURL = '/api/v1/reservations';
+const EngineersURL = '/api/v1/consultations';
+const headers = () => ({ headers: { Authorization: JSON.parse(localStorage.getItem('token')) } });
 
 const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
-  const response = await axios.get(EngineersURL)
+  const response = await axios.get(EngineersURL, headers())
     .then(({ data }) => data).catch((error) => {
       throw new Error(`HTTP error! Error: ${error}`);
     });
   return response;
 });
 
-const addReservations = createAsyncThunk('reservations/addReservations', async (engineer) => {
-  const response = await axios.post(EngineersURL, engineer)
+const addReservations = createAsyncThunk('reservations/addReservations', async (reservation) => {
+  const response = await axios.post(EngineersURL, reservation, headers())
     .then(({ data }) => data).catch((error) => {
       throw new Error(`HTTP error! Error: ${error}`);
     });

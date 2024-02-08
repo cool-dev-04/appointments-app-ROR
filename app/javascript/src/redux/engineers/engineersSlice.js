@@ -14,7 +14,14 @@ const isRejectedAction = (action) => action.type.endsWith('/rejected');
 const engineersSlice = createSlice({
   name: 'Engineers',
   initialState,
-  reducers: {},
+  reducers: {
+    EngineersReset: (state) => ({
+      ...state,
+      status: 'idle',
+      error: null,
+      message: null,
+    }),
+  },
   extraReducers(builder) {
     builder
 
@@ -50,5 +57,6 @@ const engineersSlice = createSlice({
 });
 
 export const engineersState = (state) => state.engineers;
+export const { EngineersReset } = engineersSlice.actions;
 export { fetchEngineers, addEngineer, deleteEngineer };
 export default engineersSlice.reducer;

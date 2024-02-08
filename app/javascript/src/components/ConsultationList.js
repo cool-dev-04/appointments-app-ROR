@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReservations } from '../redux/reservation/reservationsThunk';
+import { reservationsState } from '../redux/reservation/reservationsSlice';
 
 function ConsultationList() {
-  const [consultations, setConsultations] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { reservations, error, status } = useSelector(reservationsState);
+  console.log(reservations);
 
   useEffect(() => {
-    const fetchConsultations = async () => {
-      try {
-        const response = await axios.get('/api/v1/consultations');
-        setConsultations(response.data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
+    if (status === 'idle') {
+      dispatch(fetchReservations());
+    }
+  }, [dispatch, status]);
 
-    fetchConsultations();
-  }, []);
-
-  if (loading) {
+  if (status === 'loading') {
     return <p>Loading...</p>;
   }
 
-  if (error) {
+  if (error && status === 'failed') {
     return (
       <p>
         Error:
@@ -34,8 +27,8 @@ function ConsultationList() {
     );
   }
 
-  if (!consultations || consultations.length === 0) {
-    return <p>No consultations found.</p>;
+  if (!reservations || reservations.length === 0) {
+    return <p>No reservations found.</p>;
   }
 
   return (
@@ -50,7 +43,7 @@ function ConsultationList() {
           </tr>
         </thead>
         <tbody>
-          {consultations.map((consultation) => (
+          {reservations.map((consultation) => (
             <tr key={consultation.id}>
               <td>{consultation.user_name}</td>
               <td>{consultation.engineer_name}</td>
