@@ -7,7 +7,6 @@ function ReservationForm() {
   const dispatch = useDispatch();
   const { engineerId } = useParams();
   const user = JSON.parse(localStorage.getItem('user'));
-  // console.log(JSON.parse(localStorage.getItem('user')).id, 'userId');
   const [userId, setUserId] = useState(user.id);
 
   const handleSubmit = (e) => {
@@ -22,7 +21,6 @@ function ReservationForm() {
       date,
       city,
     };
-    // console.log(data, 'data');
     dispatch(addReservations(data));
 
     e.target.engineer_id.value = '';

@@ -6,7 +6,6 @@ import { reservationsState } from '../redux/reservation/reservationsSlice';
 function ConsultationList() {
   const dispatch = useDispatch();
   const { reservations, error, status } = useSelector(reservationsState);
-  console.log(reservations);
 
   useEffect(() => {
     if (status === 'idle') {
