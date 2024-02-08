@@ -51,7 +51,7 @@ function ReservationForm() {
           <textarea className="form-control" id="city" />
         </label>
       </div>
-      
+
       <button type="submit" className="btn btn-primary">Submit</button>
     </form>
   );
