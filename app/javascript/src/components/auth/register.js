@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { register } from '../../redux/auth/authSlice';
 import Authspinner from './authspinner';
-import { fetchEngineers } from '../../redux/engineers/engineersThunk';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -28,8 +27,7 @@ function Register() {
   useEffect(() => {
     if (isSuccess && user) {
       toast.success(message);
-      dispatch(fetchEngineers())
-        .then(() => navigate('/'));
+      navigate('/');
     }
 
     if (isError) {
