@@ -7,3 +7,6 @@ yarn install
 
 ./bin/rails db:create
 ./bin/rails db:migrate
+
+yarn build:css
+yarn build
