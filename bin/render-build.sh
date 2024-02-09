@@ -10,3 +10,6 @@ yarn install
 
 yarn build:css
 yarn build
+
+./bin/rails assets:precompile
+./bin/rails assets:clean
