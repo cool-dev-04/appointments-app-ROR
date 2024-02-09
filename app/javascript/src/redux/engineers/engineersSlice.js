@@ -8,8 +8,8 @@ const initialState = {
   message: null,
 };
 
-const isPendingAction = (action) => action.type.endsWith('/pending');
-const isRejectedAction = (action) => action.type.endsWith('/rejected');
+const isPendingAction = (action) => action.type.split('/')[0] === 'engineers' && action.type.endsWith('/pending');
+const isRejectedAction = (action) => action.type.split('/')[0] === 'engineers' && action.type.endsWith('/rejected');
 
 const engineersSlice = createSlice({
   name: 'Engineers',
