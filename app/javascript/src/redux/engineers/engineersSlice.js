@@ -27,15 +27,15 @@ const engineersSlice = createSlice({
 
       .addCase(fetchEngineers.fulfilled, (state, action) => ({
         ...state,
-        engineers: action.payload,
+        engineers: action.payload.data,
         status: 'succeeded',
         message: action.payload.message,
       }))
       .addCase(addEngineer.fulfilled, (state, action) => ({
         ...state,
-        engineers: [...state.engineers, action.payload],
+        engineers: [...state.engineers, action.payload.data],
         status: 'succeeded',
-        message: action.payload.response,
+        message: action.payload.message,
       }))
       .addCase(deleteEngineer.fulfilled, (state, action) => ({
         ...state,

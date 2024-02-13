@@ -1,10 +1,12 @@
 class Api::V1::EngineersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i[create]
+
   def index
     @engineers = Engineer.select(:id, :name, :speciality, :photo).all.order(created_at: :asc)
     if @engineers.empty?
       render json: { message: 'No engineers found' }
     else
-      render json: @engineers
+      render json: { data: @engineers }
     end
   end
 
@@ -21,7 +23,7 @@ class Api::V1::EngineersController < ApplicationController
   def create
     @engineer = Engineer.new(engineer_params)
     if @engineer.save
-      render json: @engineer, status: :created
+      render json: { data: @engineer }, status: :created
     else
       render json: { error: 'Unable to create engineer' }
     end

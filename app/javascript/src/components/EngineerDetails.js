@@ -19,7 +19,7 @@ const EngineerDetails = () => {
     about,
   } = engineerDetails;
 
-  const fetchEnginnerDetails = useCallback(async () => {
+  const fetchEngineerDetails = useCallback(async () => {
     const token = JSON.parse(localStorage.getItem('token'));
 
     const res = await axios
@@ -36,8 +36,8 @@ const EngineerDetails = () => {
   }, [dispatch, engineerId]);
 
   useEffect(() => {
-    fetchEnginnerDetails();
-  }, [fetchEnginnerDetails, engineerId]);
+    fetchEngineerDetails();
+  }, [fetchEngineerDetails, engineerId]);
   if (error) {
     return <div className="error">{error}</div>;
   }

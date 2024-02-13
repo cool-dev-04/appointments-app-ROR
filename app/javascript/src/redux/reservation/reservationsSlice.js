@@ -20,14 +20,15 @@ const reservationsSlice = createSlice({
 
       .addCase(fetchReservations.fulfilled, (state, action) => ({
         ...state,
-        reservations: action.payload,
+        reservations: action.payload.data,
         status: 'succeeded',
+        message: action.payload.message,
       }))
       .addCase(addReservations.fulfilled, (state, action) => ({
         ...state,
-        reservations: [...state.reservations, action.payload],
+        reservations: [...state.reservations, action.payload.data],
         status: 'succeeded',
-        message: action.payload.response,
+        message: action.payload.message,
       }))
 
     // for all pending actions that has the same callback functions

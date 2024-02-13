@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "home" => "home#home"
   root "home#home"
   get "/*path" => "home#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
