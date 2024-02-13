@@ -3,7 +3,7 @@
 set -o errexit
 
 bundle install
-yarn install
+yarn check --integrity --verify-tree
 
 ./bin/rails db:create
 ./bin/rails db:migrate
