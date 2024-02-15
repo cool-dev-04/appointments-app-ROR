@@ -54,7 +54,7 @@ function EngineersList({ showDeleteButton = false }) {
     if (status === 'idle') {
       dispatch(fetchEngineers())
         .then((res) => {
-          if (Array.isArray(res.payload.data)) {
+          if (Array.isArray(res?.payload.data)) {
             setShowIds(res.payload.data?.map((engineer) => engineer.id)?.slice(0, 3) ?? [0, 0, 0]);
           }
         });

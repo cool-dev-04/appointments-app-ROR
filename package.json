@@ -26,7 +26,8 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build:dev": "webpack --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
     "build:css": "yarn build:css:compile && yarn build:css:prefix",
@@ -56,6 +57,7 @@
     "stylelint-csstree-validator": "1.x",
     "stylelint-scss": "3.x",
     "svg-inline-loader": "^0.8.2",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "webpack-merge": "^5.10.0"
   }
 }

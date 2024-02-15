@@ -7,6 +7,12 @@ const headers = () => ({ headers: { Authorization: JSON.parse(localStorage.getIt
 const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
   const response = await axios.get(EngineersURL, headers())
     .then(({ data }) => data).catch((error) => {
+      if (error.response.status === 401) {
+        // handle token expiration
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.location.href = '/';
+      }
       throw new Error(`HTTP error! Error: ${error}`);
     });
   return response;
@@ -15,6 +21,12 @@ const fetchReservations = createAsyncThunk('reservations/fetchReservations', asy
 const addReservations = createAsyncThunk('reservations/addReservations', async (reservation) => {
   const response = await axios.post(EngineersURL, reservation, headers())
     .then(({ data }) => data).catch((error) => {
+      if (error.response.status === 401) {
+        // handle token expiration
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.location.href = '/';
+      }
       throw new Error(`HTTP error! Error: ${error}`);
     });
   return response;
